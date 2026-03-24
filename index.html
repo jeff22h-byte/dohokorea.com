@@ -240,14 +240,24 @@
     .hd-c2 { width: 60%; height: 60%; bottom: 0; left: 0; background: rgba(126,200,196,0.55); }
     .hd-c3 { width: 60%; height: 60%; bottom: 0; right: 0; background: rgba(90,152,166,0.50); }
     .hd-hex { position: absolute; top: 50%; left: 50%; transform: translate(-52%,-42%); width: 15%; height: 15%; background: rgba(255,255,255,0.75); clip-path: polygon(50% 0%,93% 25%,93% 75%,50% 100%,7% 75%,7% 25%); }
-    .product-grid { grid-template-columns: 1fr; }
-    .products-header { display: grid; grid-template-columns: 1fr; gap: 3rem; align-items: end; margin-bottom: 2.5rem; }
-    .ventures-grid { grid-template-columns: 1fr; }
-    .markets-grid { display: grid; grid-template-columns: 1fr; gap: 4rem; }
-    .contact-grid { display: grid; grid-template-columns: 1fr; gap: 4rem; }
-    .form-row { grid-template-columns: 1fr; }
+    /* ── hero content width on desktop (leave room for deco on right) ── */
+    .hero-content { max-width: 55%; }
+
+    /* ── proper multi-column grids on desktop ── */
+    .product-grid { grid-template-columns: repeat(3, 1fr); }
+    .products-header { display: grid; grid-template-columns: 1fr auto; gap: 3rem; align-items: end; margin-bottom: 2.5rem; }
+    .ventures-grid { grid-template-columns: repeat(2, 1fr); }
+    .markets-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+    .form-row { grid-template-columns: 1fr 1fr; }
     .form { margin-top: 0; }
     .fsub { width: auto; }
+
+    /* ── about / pillars / market-nums multi-column ── */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+    .pillars { grid-template-columns: repeat(3, 1fr); }
+    .market-nums { grid-template-columns: repeat(3, 1fr); }
+
     footer { flex-direction: row; justify-content: space-between; text-align: left; }
   }
 
