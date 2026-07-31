@@ -64,6 +64,9 @@ table.items td.rgt { text-align: right; font-weight: 600; color: #1a3a5c; paddin
 .tbox tr.grand td { background: #1a3a5c; color: white; font-weight: 700; font-size: 14.5px; }
 .tbox tr.grand td:first-child { border-radius: 6px 0 0 6px; }
 .tbox tr.grand td:last-child { border-radius: 0 6px 6px 0; }
+.tv-in { border: none; background: transparent; font-family: inherit; font-size: inherit; font-weight: 600; color: inherit; width: 90px; text-align: right; outline: none; border-bottom: 1px dashed #b8c8da; padding: 0 2px; }
+.tv-in:focus { border-bottom-color: #2d6a9f; }
+.grand .tv-in { color: white; border-bottom-color: rgba(255,255,255,0.45); }
 .korean-box { margin-top: 12px; background: #f5f8fb; border: 1px solid #d8e4f0; border-radius: 7px; padding: 10px 14px; font-size: 12.5px; color: #445; }
 .korean-box strong { color: #1a3a5c; }
 
@@ -116,7 +119,9 @@ table.items td.rgt { text-align: right; font-weight: 600; color: #1a3a5c; paddin
             <th style="width:75px">수량</th>
             <th style="width:50px">단위</th>
             <th style="width:115px">단가 (USD)</th>
-            <th style="width:125px">금액 (USD)</th>
+            <th style="width:115px">공급가액 (USD)</th>
+            <th style="width:100px">세액 (USD)</th>
+            <th style="width:110px">합계 (USD)</th>
             <th style="width:34px"></th>
           </tr>
         </thead>
@@ -126,7 +131,7 @@ table.items td.rgt { text-align: right; font-weight: 600; color: #1a3a5c; paddin
     <button class="btn-add" onclick="addItem()">＋ 품목 추가</button>
 
     <div class="vat-row">
-      <label class="tog"><input type="checkbox" id="vatOn" checked onchange="calcAll()"><span class="sldr"></span></label>
+      <label class="tog"><input type="checkbox" id="vatOn" checked onchange="vatToggle()"><span class="sldr"></span></label>
       <span style="font-size:13px;font-weight:600;color:#445">VAT 10% 적용</span>
     </div>
 
@@ -134,8 +139,8 @@ table.items td.rgt { text-align: right; font-weight: 600; color: #1a3a5c; paddin
       <div class="tbox">
         <table>
           <tr><td class="tl">공급가액</td><td class="tv" id="tSub">USD 0.00</td></tr>
-          <tr id="vatRow"><td class="tl">VAT 10%</td><td class="tv" id="tVat">USD 0.00</td></tr>
-          <tr class="grand"><td class="tl">총 합계</td><td class="tv" id="tTot">USD 0.00</td></tr>
+          <tr id="vatRow"><td class="tl">세액 (VAT 10%)</td><td class="tv">USD <input type="number" step="0.01" id="tVat" class="tv-in" oninput="man(this)"></td></tr>
+          <tr class="grand"><td class="tl">총 합계</td><td class="tv">USD <input type="number" step="0.01" id="tTot" class="tv-in" oninput="man(this)"></td></tr>
         </table>
         <div class="korean-box">한글금액: <strong id="tKr">-</strong></div>
       </div>
@@ -198,6 +203,8 @@ function addItem(name='', spec='', qty='', price='') {
     <td><input value="PCS" style="width:40px;text-align:center"></td>
     <td><input type="number" value="${price}" step="0.01" style="text-align:right" oninput="calc('${id}')"></td>
     <td class="rgt" id="${id}amt">-</td>
+    <td><input type="number" class="vin" step="0.01" style="text-align:right" placeholder="자동" oninput="man(this)"></td>
+    <td><input type="number" class="tin" step="0.01" style="text-align:right" placeholder="자동" oninput="man(this)"></td>
     <td class="ctr"><button class="btn-del" onclick="del('${id}')">×</button></td>`;
   document.getElementById('tbody').appendChild(tr);
   renum(); calcAll();
@@ -216,23 +223,46 @@ function renum() {
 
 function calc(id) { calcAll(); }
 
+// 세액/합계 수동수정: 값을 입력하면 수동값 유지, 비우면 자동계산 복귀
+function man(el) {
+  if (el.value.trim() === '') delete el.dataset.manual;
+  else el.dataset.manual = '1';
+  calcAll();
+}
+
+// VAT 토글 시 수동값 초기화 후 재계산
+function vatToggle() {
+  document.querySelectorAll('#tbody .vin, #tbody .tin').forEach(i => { delete i.dataset.manual; });
+  delete document.getElementById('tVat').dataset.manual;
+  delete document.getElementById('tTot').dataset.manual;
+  calcAll();
+}
+
 function calcAll() {
-  let sub = 0;
+  const useVat = document.getElementById('vatOn').checked;
+  let sub = 0, vsum = 0, tsum = 0;
   document.querySelectorAll('#tbody tr').forEach(r => {
     const q = parseFloat(r.cells[3].querySelector('input').value)||0;
     const p = parseFloat(r.cells[5].querySelector('input').value)||0;
     const a = q*p;
     r.cells[6].textContent = a>0 ? fmt(a) : '-';
-    sub += a;
+    // 품목별 세액: 공급가액의 10% 자동 (수동수정 가능)
+    const vin = r.cells[7].querySelector('input');
+    if (!vin.dataset.manual) vin.value = (useVat && a>0) ? (a*0.1).toFixed(2) : '';
+    const v = parseFloat(vin.value)||0;
+    // 품목별 합계: 공급가액 + 세액 자동 (수동수정 가능)
+    const tin = r.cells[8].querySelector('input');
+    if (!tin.dataset.manual) tin.value = (a+v)>0 ? (a+v).toFixed(2) : '';
+    const t = parseFloat(tin.value)||0;
+    sub += a; vsum += v; tsum += t;
   });
-  const useVat = document.getElementById('vatOn').checked;
-  const vat = useVat ? sub*0.1 : 0;
-  const tot = sub+vat;
   document.getElementById('tSub').textContent = fmt(sub);
-  document.getElementById('tVat').textContent = fmt(vat);
-  document.getElementById('tTot').textContent = fmt(tot);
+  const tVatIn = document.getElementById('tVat');
+  const tTotIn = document.getElementById('tTot');
+  if (!tVatIn.dataset.manual) tVatIn.value = vsum.toFixed(2);
+  if (!tTotIn.dataset.manual) tTotIn.value = tsum.toFixed(2);
   document.getElementById('vatRow').style.display = useVat ? '' : 'none';
-  document.getElementById('tKr').textContent = toKr(tot);
+  document.getElementById('tKr').textContent = toKr(parseFloat(tTotIn.value)||0);
 }
 
 function updateSpec() {
@@ -287,11 +317,14 @@ async function generate(docType) {
       price: parseFloat(r.cells[5].querySelector('input').value)||0,
       amt:   (parseFloat(r.cells[3].querySelector('input').value)||0) *
              (parseFloat(r.cells[5].querySelector('input').value)||0),
+      vat:   parseFloat(r.cells[7].querySelector('input').value)||0,
+      tot:   parseFloat(r.cells[8].querySelector('input').value)||0,
     }));
 
     const sub  = items.reduce((s,it)=>s+it.amt, 0);
-    const vat  = useVat ? sub*0.1 : 0;
-    const tot  = sub+vat;
+    // 세액·총합계는 화면의 값 그대로 사용 (수동수정 반영)
+    const vat  = parseFloat(document.getElementById('tVat').value)||0;
+    const tot  = parseFloat(document.getElementById('tTot').value)||0;
     const fU   = n => 'USD '+n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
 
     // Total 소수점 분리 (합계금액 셀 구조: USD xx,xxx. | 소수 2자리)
@@ -311,11 +344,34 @@ async function generate(docType) {
     // 단순 텍스트 교체
     function rep(old, nw) { xml = xml.split(old).join(nw); }
 
-    // 청구서: 견적서 양식의 고정 문구만 교체 (금액·품목·조건은 견적 내용 그대로)
+    // 청구서: 문구 교체 + 품목표에 세액·합계 열 추가
     if (isInv) {
       rep('견   적   서', '청   구   서');
       rep('견적번호: {QUOTE_NO}', '청구번호: {QUOTE_NO}');
       rep('아래와 같이 견적합니다.', '아래와 같이 청구합니다.');
+
+      // 표 셀 XML 조각 (템플릿 셀 서식과 동일)
+      const BRD = '<w:tcBorders><w:top w:val="single" w:sz="4" w:space="0" w:color="000000"/><w:left w:val="single" w:sz="4" w:space="0" w:color="000000"/><w:bottom w:val="single" w:sz="4" w:space="0" w:color="000000"/><w:right w:val="single" w:sz="4" w:space="0" w:color="000000"/></w:tcBorders>';
+      const MAR = '<w:tcMar><w:top w:w="60" w:type="dxa"/><w:left w:w="100" w:type="dxa"/><w:bottom w:w="60" w:type="dxa"/><w:right w:w="100" w:type="dxa"/></w:tcMar>';
+      const FNT = '<w:rFonts w:ascii="맑은 고딕" w:eastAsia="맑은 고딕" w:hAnsi="맑은 고딕" w:cs="맑은 고딕"/>';
+      const hdrCell = t => `<w:tc><w:tcPr><w:tcW w:w="0" w:type="auto"/>${BRD}<w:shd w:val="clear" w:color="auto" w:fill="D9D9D9"/>${MAR}<w:vAlign w:val="center"/></w:tcPr><w:p w:rsidR="00E50101" w:rsidRDefault="00050CEB"><w:pPr><w:jc w:val="center"/></w:pPr><w:r><w:rPr>${FNT}<w:b/><w:bCs/><w:sz w:val="18"/><w:szCs w:val="18"/></w:rPr><w:t>${t}</w:t></w:r></w:p></w:tc>`;
+      const valCell = t => `<w:tc><w:tcPr><w:tcW w:w="0" w:type="auto"/>${BRD}${MAR}<w:vAlign w:val="center"/></w:tcPr><w:p w:rsidR="00E50101" w:rsidRDefault="00050CEB"><w:pPr><w:jc w:val="right"/></w:pPr><w:r><w:rPr>${FNT}<w:sz w:val="18"/><w:szCs w:val="18"/></w:rPr><w:t>${t}</w:t></w:r></w:p></w:tc>`;
+
+      // 열 너비 재배치 (기존 합계와 동일한 전체 폭 유지)
+      rep('w:w="3681"', 'w:w="2300"');
+      rep('w:w="1558"', 'w:w="1200"');
+      rep('w:w="1417"', 'w:w="900"');
+      rep('w:w="1461"', 'w:w="1200"');
+      rep('<w:gridCol w:w="1945"/></w:tblGrid>', '<w:gridCol w:w="1550"/><w:gridCol w:w="1362"/><w:gridCol w:w="1550"/></w:tblGrid>');
+
+      // 헤더·품목·운송비 행에 세액/합계 셀 추가
+      rep('<w:t>공급가액</w:t></w:r></w:p></w:tc>', '<w:t>공급가액</w:t></w:r></w:p></w:tc>' + hdrCell('세   액') + hdrCell('합   계'));
+      rep('<w:t>{ITEM1_AMT}</w:t></w:r></w:p></w:tc>', '<w:t>{ITEM1_AMT}</w:t></w:r></w:p></w:tc>' + valCell('{ITEM1_VAT}') + valCell('{ITEM1_TOT}'));
+      rep('<w:t>{ITEM2_AMT}</w:t></w:r></w:p></w:tc>', '<w:t>{ITEM2_AMT}</w:t></w:r></w:p></w:tc>' + valCell('{ITEM2_VAT}') + valCell('{ITEM2_TOT}'));
+      rep('<w:t>별도청구예정</w:t></w:r></w:p></w:tc>', '<w:t>별도청구예정</w:t></w:r></w:p></w:tc>' + valCell('-') + valCell('-'));
+
+      // 합계 3행의 라벨 병합폭 5 → 7
+      rep('<w:gridSpan w:val="5"/>', '<w:gridSpan w:val="7"/>');
     }
 
     rep('{QUOTE_NO}',   quoteNo);
@@ -340,8 +396,10 @@ async function generate(docType) {
       rep('{ITEM1_QTY}',   it1.qty ? `${it1.qty} ${it1.unit}` : '-');
       rep('{ITEM1_PRICE}', it1.price > 0 ? fU(it1.price) : '무상');
       rep('{ITEM1_AMT}',   it1.amt > 0 ? fU(it1.amt) : '-');
+      rep('{ITEM1_VAT}',   it1.vat > 0 ? fU(it1.vat) : '-');
+      rep('{ITEM1_TOT}',   it1.tot > 0 ? fU(it1.tot) : '-');
     } else {
-      ['{ITEM1_NAME}','{ITEM1_SPEC}','{ITEM1_QTY}','{ITEM1_PRICE}','{ITEM1_AMT}'].forEach(p=>rep(p,''));
+      ['{ITEM1_NAME}','{ITEM1_SPEC}','{ITEM1_QTY}','{ITEM1_PRICE}','{ITEM1_AMT}','{ITEM1_VAT}','{ITEM1_TOT}'].forEach(p=>rep(p,''));
     }
 
     // 품목 2 (템플릿에 존재)
@@ -352,8 +410,10 @@ async function generate(docType) {
       rep('{ITEM2_QTY}',   it2.qty ? `${it2.qty} ${it2.unit}` : '-');
       rep('{ITEM2_PRICE}', it2.price > 0 ? fU(it2.price) : '무상');
       rep('{ITEM2_AMT}',   it2.amt > 0 ? fU(it2.amt) : '-');
+      rep('{ITEM2_VAT}',   it2.vat > 0 ? fU(it2.vat) : '-');
+      rep('{ITEM2_TOT}',   it2.tot > 0 ? fU(it2.tot) : '-');
     } else {
-      ['{ITEM2_NAME}','{ITEM2_SPEC}','{ITEM2_QTY}','{ITEM2_PRICE}','{ITEM2_AMT}'].forEach(p=>rep(p,''));
+      ['{ITEM2_NAME}','{ITEM2_SPEC}','{ITEM2_QTY}','{ITEM2_PRICE}','{ITEM2_AMT}','{ITEM2_VAT}','{ITEM2_TOT}'].forEach(p=>rep(p,''));
     }
 
     // 남은 플레이스홀더 제거
