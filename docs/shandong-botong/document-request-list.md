@@ -70,3 +70,42 @@ We request the following documents for our end-customer's supplier registration 
 3. MOQ per size / 규격별 MOQ
 4. Stock availability / 재고 보유 여부
 5. Factory visit possibility / 공장 방문 가능 여부
+
+## 6. New RFQ — Group A & B / 신규 견적 요청 (Group A·B)
+
+In addition to the previously quoted large-diameter items (Group C: 450×30×3000, 460×8×3000 — note the shell OD is corrected to 460 mm, not 461 mm), please quote the following Group A & B items.
+기존 견적 품목(Group C: 450×30×3000, 460×8×3000 — 외피 외경은 461이 아닌 460mm로 정정)에 더해, 아래 Group A·B 품목의 견적을 요청함.
+
+All items: 6061-T6, Cold Drawn Seamless, length 2,000 mm. Please state the actual production process (cold drawn / hot extrusion) and whether each size is produced in-house.
+전 품목 6061-T6, Cold Drawn Seamless, 길이 2,000mm. 품목별 실제 공정(냉간인발/열간압출) 및 자사 생산 여부 명기 요청.
+
+**Group A — wall t30 mm (7 items):**
+
+| No. | OD (mm) | t (mm) | L (mm) |
+|---|---|---|---|
+| A-1 | 120 | 30 | 2,000 |
+| A-2 | 150 | 30 | 2,000 |
+| A-3 | 160 | 30 | 2,000 |
+| A-4 | 180 | 30 | 2,000 |
+| A-5 | 200 | 30 | 2,000 |
+| A-6 | 250 | 30 | 2,000 |
+| A-7 | 260 | 30 | 2,000 |
+
+**Group B — wall t10 mm (11 items):**
+
+| No. | OD (mm) | t (mm) | L (mm) |
+|---|---|---|---|
+| B-1 | 125 | 10 | 2,000 |
+| B-2 | 135 | 10 | 2,000 |
+| B-3 | 155 | 10 | 2,000 |
+| B-4 | 165 | 10 | 2,000 |
+| B-5 | 175 | 10 | 2,000 |
+| B-6 | 185 | 10 | 2,000 |
+| B-7 | 195 | 10 | 2,000 |
+| B-8 | 220 | 10 | 2,000 |
+| B-9 | 260 | 10 | 2,000 |
+| B-10 | 270 | 10 | 2,000 |
+| B-11 | 280 | 10 | 2,000 |
+
+Please provide: unit price (FOB Qingdao and CIF Incheon), MOQ per size, and lead time.
+품목별 단가(FOB Qingdao / CIF Incheon), MOQ, 납기 회신 요청.
