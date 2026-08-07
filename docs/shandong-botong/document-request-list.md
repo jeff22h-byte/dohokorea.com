@@ -65,8 +65,8 @@ We request the following documents for our end-customer's supplier registration 
 
 1. Actual production process for our sizes: cold drawn / hot extrusion / forging?
    당사 규격의 실제 생산 공정: 냉간인발 / 열간압출 / 단조?
-2. Are φ450 & φ461 produced in-house or by a partner factory? If by a partner: who issues the MTC, and can Botong still issue the FTA C/O under HS 7608.20?
-   φ450·φ461 자사 생산 여부. 외주 시: MTC 발행 주체, Botong 명의 한-중 FTA C/O(HS 7608.20) 발급 가능 여부?
+2. Are φ450 & φ460 produced in-house or by a partner factory? If by a partner: who issues the MTC, and can Botong still issue the FTA C/O under HS 7608.20?
+   φ450·φ460 자사 생산 여부. 외주 시: MTC 발행 주체, Botong 명의 한-중 FTA C/O(HS 7608.20) 발급 가능 여부?
 3. MOQ per size / 규격별 MOQ
 4. Stock availability / 재고 보유 여부
 5. Factory visit possibility / 공장 방문 가능 여부
