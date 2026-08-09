@@ -1,6 +1,8 @@
 # Botong 직접 제조 여부 검증 — 순서별 질의서 (영문)
 
-**목적**: Botong이 당사 요구 품목(6061-T6 냉간인발 무계목관)의 **직접 제조사인지**를 확정하고, 아니라면 **최종 고객 현장실사 때 생산 현장을 보여줄 수 있는 체제**를 서면으로 확보한다.
+**목적**: ① Botong이 당사 요구 품목(6061-T6 무계목관)의 **직접 제조사인지**를 확정하고, 아니라면 **최종 고객 현장실사 때 생산 현장을 보여줄 수 있는 체제**를 서면으로 확보한다. ② **성형 공정(냉간인발/열간압출/단조)별 물성 차이와 우리에게 유리한 방식**에 대한 답을 데이터로 받아온다.
+
+**전제**: 우리는 냉간인발을 **선호**할 뿐 필수 조건으로 못 박지 않았다. 진원도(360° 편차 0.5mm)·단일피스 조건만 충족하면 **열간압출·단조도 수용 가능** — 따라서 공정 자체보다 "어떤 공정으로 어떤 물성을 보증할 수 있는가"를 받아내는 것이 목표다.
 
 **질의 요령**: 우리가 파악한 사실(경영범위·ISO 범위·프레스 톤수 분석)은 **먼저 꺼내지 않는다.** 열린 질문 → 구체 질문 → 검증 질문 순서로 진행해, 상대의 답이 스스로 좁혀지게 한다. 각 단계의 답을 들은 뒤 다음 단계로 넘어간다.
 
@@ -22,7 +24,7 @@
 
 ## Phase 2 — 당사 발주 품목으로 구체화
 
-**Q4.** For our order — 6061-T6 cold drawn seamless tubes, 450×30×3000 and 460×8×3000 — will these be produced **in this factory**? If yes, on which production line?
+**Q4.** For our order — 6061-T6 seamless tubes, 450×30×3000 and 460×8×3000 — will these be produced **in this factory**? If yes, on which production line and by which process?
 → (한) 당사 발주 규격이 **이 공장에서** 생산되는가? 어느 라인에서?
 
 **Q5.** The mill test certificate you sent us covers a lot of 450×30×800, 200 pieces. Was that lot produced here? Can we see the line that made it?
@@ -41,7 +43,39 @@
 
 **Q8.** Which product standard do you manufacture and inspect our tubes to — GB/T 6893 (cold drawn seamless) or GB/T 4437.1 (hot extruded seamless)?
 → (한) 당사 관재의 제조·검사 적용 표준은 GB/T 6893(냉간인발)인가 GB/T 4437.1(열간압출)인가?
-→ *표준 선택이 곧 공정 자백. MTC 재발행에도 이 표준이 명기되어야 함.*
+→ *표준 선택이 곧 공정 자백. MTC 재발행에도 이 표준이 명기되어야 함. (냉간인발은 필수가 아니라 선호 — 공정 확인이 목적)*
+
+## Phase 3B — 공정 선택 질의: 어느 성형법이 우리에게 유리한가 (★ 반드시 답을 받아올 것)
+
+*배경 지식 (내부용): 6061-T6의 강도·경도는 성형법보다 **T6 열처리(용체화+시효)로 대부분 결정**된다. 표준 보증 최소치도 큰 차이가 없다 — ASTM 기준 압출(B221)과 인발(B210) 모두 인장 약 290 MPa / 항복 약 240 MPa급이고, 중국 GB/T 6893(인발)은 310/275로 다소 높게 잡는다. 실제 차이는 강도 수치가 아니라 ① 표준이 보증하는 최소치, ② 조직 균일성(압출 대단면은 표피 조대결정륜 발생 가능), ③ 잔류응력(가공 시 변형 위험), ④ 내부 건전성(단조가 유리), ⑤ 30mm 후벽의 T6 퀀칭 관통성에서 나온다. 우리는 전량 재가공하므로 표면·치수 정밀도 차이는 덜 중요하다.*
+
+**Q13.** To be clear about our requirement: cold drawn is our **preference**, not a mandate. Hot extrusion or forging is acceptable **if** the roundness (0.5 mm over 360°) and one-piece seamless conditions are met. So — for each of our sizes, which forming methods can you actually offer? Please mark per size: cold drawn / hot extruded / forged.
+→ (한) 냉간인발은 선호일 뿐 필수가 아님을 먼저 밝히고, 규격별로 실제 제공 가능한 성형법을 표로 받아낸다.
+
+**Q14.** For each method you can offer, what mechanical properties can you **guarantee in writing** for 6061-T6 — tensile strength, yield strength, elongation, and hardness (HBW) — and to which product standard (GB/T 6893 / GB/T 4437.1 / ASTM B210 / B221 / forging standard)?
+→ (한) 공정별 서면 보증 가능한 물성치(인장·항복·연신율·경도)와 근거 표준을 요구.
+→ *경도·강도가 공정에 따라 달라지는지에 대한 공식 답변이 이것. 말이 아니라 보증 수치로 받는다.*
+
+**Q15.** For the 30 mm thick wall (450×30): can your T6 heat treatment achieve full properties **through the wall thickness**? Please show mid-wall hardness data. And for large extruded sections — how do you control the peripheral coarse-grain ring and property uniformity around the circumference?
+→ (한) 30mm 후벽의 T6 관통 열처리(심부 경도) 데이터와, 압출품의 표피 조대결정륜·원주방향 균일성 관리 방법.
+→ *쿨링롤은 원주방향 경도 불균일이 마모·열전달 불균일로 직결됨.*
+
+**Q16.** Our rolls are finish-machined and rotate continuously — **residual stress** in the raw tube causes distortion during machining, which is a rejection risk for us. Do you perform stress relief after forming (stretching or thermal)? Can the residual stress control method be stated in the MTC?
+→ (한) 성형 후 잔류응력 제거(인장교정/열처리) 실시 여부와 MTC 명기 가능 여부.
+→ *재가공 전제인 우리에게는 강도보다 이것이 실질적으로 더 중요할 수 있음.*
+
+**Q17.** For thick-wall or forged product, can you perform **ultrasonic inspection** for internal defects and attach the report to each lot?
+→ (한) 후벽·단조품의 내부 결함 초음파(UT) 검사 및 로트별 성적서 첨부 가능 여부.
+
+**공정 선택 판단 기준 (내부용 — 미팅에서 받은 답으로 결정)**
+
+| 기준 | 냉간인발 | 열간압출 | 단조 |
+|---|---|---|---|
+| 표준 보증 강도 | 다소 높음 (GB/T 6893: 310/275) | 표준 최소치 낮은 편 (B221급: ~290/240) | 표준·업체 보증에 따라 다름 |
+| 조직 | 미세·균일 | 대단면은 표피 조대결정륜 주의 | 치밀, 내부 건전성 최고 |
+| 잔류응력 | 있음 (교정 필요) | 비교적 낮음 (인장교정 시 양호) | 열처리·가공 이력에 따름 |
+| φ450·460 대구경 현실성 | 설비 극히 드묾 | 초대형 프레스 필요 | **후벽(450×30)은 단조+가공이 현실적** |
+| 우리 결론 방향 | — | — | **공정 불문, Q14~Q17 보증치·관리 데이터로 결정** |
 
 ## Phase 4 — 외주로 확인된 경우 (관계를 깨지 않고 조건화)
 
