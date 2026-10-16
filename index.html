@@ -1159,6 +1159,8 @@
   function closeDdaPop(){ document.getElementById('ddaPop').classList.remove('open'); try{ sessionStorage.setItem('ddaPopSeen','1'); }catch(e){} }
   function hideDdaToday(){ try{ localStorage.setItem('ddaPopHideUntil', new Date().toDateString()); }catch(e){} closeDdaPop(); }
   document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeDdaPop(); });
+  (function(){ var fab=document.querySelector('.dda-fab'), c=document.getElementById('contact'); if(!fab||!c||!window.IntersectionObserver) return;
+    new IntersectionObserver(function(es){ fab.style.display = es[0].isIntersecting ? 'none' : ''; }, {threshold:0.05}).observe(c); })();
   (function(){
     var q=new URLSearchParams(location.search).get('product'); if(q) prefillProduct(q);
     var seen=false, hidden=false;
