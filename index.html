@@ -310,6 +310,36 @@
     display:flex; align-items:center; justify-content:center;
   }
 
+
+  /* ── HANATEX DDA promo ── */
+  .nav-links a.nav-dda { color:#c8962e !important; font-weight:800; border:1.5px solid #c8962e; padding:0.35rem 0.7rem; border-radius:3px; }
+  .nav-links a.nav-dda:hover { background:#c8962e; color:#fff !important; }
+  .inq-status { margin-top:0.9rem; padding:0.8rem 1rem; border-radius:3px; font-size:0.82rem; line-height:1.5; }
+  .inq-status.ok { background:#d1fae5; color:#065f46; border:1px solid #34d399; }
+  .inq-status.err { background:#fee2e2; color:#991b1b; border:1px solid #f87171; }
+  .dda-pop { position:fixed; inset:0; z-index:3000; display:none; align-items:center; justify-content:center; padding:16px; background:rgba(14,28,40,0.62); }
+  .dda-pop.open { display:flex; animation:ddaFade .25s ease; }
+  @keyframes ddaFade { from{opacity:0} to{opacity:1} }
+  .dda-card { position:relative; width:100%; max-width:440px; background:#0f2233; color:#fff; border-radius:10px; overflow:hidden; box-shadow:0 24px 60px rgba(0,0,0,.4); }
+  .dda-card-top { padding:2rem 1.8rem 1.4rem; background:
+      radial-gradient(circle at 85% 15%, rgba(200,150,46,.28), transparent 45%),
+      repeating-linear-gradient(135deg, rgba(255,255,255,.035) 0 6px, transparent 6px 14px), #16324a; }
+  .dda-kicker { font-size:.66rem; font-weight:800; letter-spacing:.18em; text-transform:uppercase; color:#e5b54e; margin-bottom:.7rem; }
+  .dda-title { font-family:'Lora',serif; font-size:1.75rem; line-height:1.2; margin-bottom:.5rem; }
+  .dda-title em { color:#e5b54e; font-style:italic; }
+  .dda-sub { font-size:.86rem; line-height:1.6; color:rgba(255,255,255,.82); }
+  .dda-tags { display:flex; flex-wrap:wrap; gap:.4rem; margin-top:1rem; }
+  .dda-tags span { font-size:.66rem; font-weight:700; letter-spacing:.06em; padding:.3rem .55rem; border:1px solid rgba(255,255,255,.25); border-radius:20px; }
+  .dda-actions { display:grid; gap:.6rem; padding:1.3rem 1.8rem 1.1rem; }
+  .dda-btn { display:block; text-align:center; text-decoration:none; font-weight:800; font-size:.78rem; letter-spacing:.1em; text-transform:uppercase; padding:.95rem 1rem; border-radius:4px; cursor:pointer; border:none; font-family:'Montserrat',sans-serif; }
+  .dda-btn.primary { background:#e5b54e; color:#0f2233; }
+  .dda-btn.ghost { background:transparent; color:#fff; border:1.5px solid rgba(255,255,255,.35); }
+  .dda-foot { display:flex; justify-content:space-between; padding:0 1.8rem 1.2rem; font-size:.72rem; }
+  .dda-foot button { background:none; border:none; color:rgba(255,255,255,.6); cursor:pointer; font-family:inherit; font-size:inherit; text-decoration:underline; padding:0; }
+  .dda-x { position:absolute; top:10px; right:12px; width:34px; height:34px; border:none; border-radius:50%; background:rgba(255,255,255,.12); color:#fff; font-size:1.1rem; cursor:pointer; }
+  .dda-fab { position:fixed; left:16px; bottom:16px; z-index:2500; display:flex; align-items:center; gap:.45rem; background:#0f2233; color:#fff; border:2px solid #e5b54e; border-radius:30px; padding:.6rem 1rem; font-family:'Montserrat',sans-serif; font-weight:800; font-size:.7rem; letter-spacing:.08em; cursor:pointer; box-shadow:0 8px 24px rgba(0,0,0,.25); }
+  .dda-fab i { width:8px; height:8px; border-radius:50%; background:#e5b54e; display:inline-block; animation:ddaPulse 1.6s infinite; }
+  @keyframes ddaPulse { 50% { opacity:.25 } }
 </style>
 </head>
 
@@ -355,6 +385,7 @@
     <li><a href="#ventures">New Business</a></li>
     <li><a href="#markets">Markets</a></li>
     <li><a href="#partners">Partners</a></li>
+    <li><a href="dda.html" class="nav-dda">HANATEX DDA</a></li>
     <li><a href="#contact" class="nav-cta">Contact Us</a></li>
   </ul>
 </nav>
@@ -366,6 +397,7 @@
   <a href="#ventures" onclick="closeMenu()">New Business</a>
   <a href="#markets" onclick="closeMenu()">Markets</a>
   <a href="#partners" onclick="closeMenu()">Partners</a>
+  <a href="dda.html" onclick="closeMenu()" style="color:#c8962e;">HANATEX DDA ↗</a>
   <a href="#contact" onclick="closeMenu()">Contact</a>
 </div>
 
@@ -573,15 +605,15 @@
     <p class="section-body" style="margin-top:auto;">Engineered for consistency and performance, each HANATEX product meets the exacting requirements of modern textile printing. SDS and TDS documentation available upon request.</p>
   </div>
   <div class="product-grid reveal">
-    <div class="product-card"><div class="p-cat">For Polyester</div><div class="p-name">HANATEX SW-8</div><p class="p-desc">High-viscosity synthetic thickener for disperse dye printing on polyester. Excellent rheology and clean washout.</p><a href="#contact" class="p-link">Request TDS →</a></div>
-    <div class="product-card"><div class="p-cat">For Polyester</div><div class="p-name">HANATEX DH-P</div><p class="p-desc">Designed for screen and digital combined printing. Sharp definition on polyester substrates.</p><a href="#contact" class="p-link">Request TDS →</a></div>
-    <div class="product-card"><div class="p-cat">Polyester · Rotary</div><div class="p-name">HANATEX R-80</div><p class="p-desc">Optimized for rotary screen printing. Stable viscosity across temperature ranges for continuous production.</p><a href="#contact" class="p-link">Request TDS →</a></div>
-    <div class="product-card"><div class="p-cat">For Cotton &amp; Rayon</div><div class="p-name">HANATEX DH-C</div><p class="p-desc">Reactive dye thickener for cotton and rayon. Superior color yield and uniform dye penetration.</p><a href="#contact" class="p-link">Request TDS →</a></div>
-    <div class="product-card"><div class="p-cat">For Cotton &amp; Rayon</div><div class="p-name">HANATEX CLX A &amp; C</div><p class="p-desc">Urea-free reactive thickener system. Eco-conscious formulation — no compromise on performance.</p><a href="#contact" class="p-link">Request TDS →</a></div>
-    <div class="product-card"><div class="p-cat">For Cotton &amp; Rayon</div><div class="p-name">HANATEX CLXi</div><p class="p-desc">Enhanced CLX for improved paste stability and printability on cellulosic fibers.</p><a href="#contact" class="p-link">Request TDS →</a></div>
-    <div class="product-card"><div class="p-cat">Denim Discharge</div><div class="p-name">HANATEX DDA</div><p class="p-desc">Color discharge agent for denim. Sharp, consistent bleach effects with predictable tone. (Export: HANATEX 750)</p><a href="#contact" class="p-link">Request TDS →</a></div>
-    <div class="product-card"><div class="p-cat">Denim Discharge</div><div class="p-name">HANATEX CS-400</div><p class="p-desc">White discharge agent for denim finishing. Clean, bright white effects in garment processing.</p><a href="#contact" class="p-link">Request TDS →</a></div>
-    <div class="product-card"><div class="p-cat">Forming Binder</div><div class="p-name">HANATEX HFB</div><p class="p-desc">High-performance forming binder for pigment printing. Excellent washfastness and fabric hand.</p><a href="#contact" class="p-link">Request TDS →</a></div>
+    <div class="product-card"><div class="p-cat">For Polyester</div><div class="p-name">HANATEX SW-8</div><p class="p-desc">High-viscosity synthetic thickener for disperse dye printing on polyester. Excellent rheology and clean washout.</p><a href="#contact" class="p-link" onclick="prefillProduct('HANATEX SW-8')">Request TDS →</a></div>
+    <div class="product-card"><div class="p-cat">For Polyester</div><div class="p-name">HANATEX DH-P</div><p class="p-desc">Designed for screen and digital combined printing. Sharp definition on polyester substrates.</p><a href="#contact" class="p-link" onclick="prefillProduct('HANATEX DH-P')">Request TDS →</a></div>
+    <div class="product-card"><div class="p-cat">Polyester · Rotary</div><div class="p-name">HANATEX R-80</div><p class="p-desc">Optimized for rotary screen printing. Stable viscosity across temperature ranges for continuous production.</p><a href="#contact" class="p-link" onclick="prefillProduct('HANATEX R-80')">Request TDS →</a></div>
+    <div class="product-card"><div class="p-cat">For Cotton &amp; Rayon</div><div class="p-name">HANATEX DH-C</div><p class="p-desc">Reactive dye thickener for cotton and rayon. Superior color yield and uniform dye penetration.</p><a href="#contact" class="p-link" onclick="prefillProduct('HANATEX DH-C')">Request TDS →</a></div>
+    <div class="product-card"><div class="p-cat">For Cotton &amp; Rayon</div><div class="p-name">HANATEX CLX A &amp; C</div><p class="p-desc">Urea-free reactive thickener system. Eco-conscious formulation — no compromise on performance.</p><a href="#contact" class="p-link" onclick="prefillProduct('HANATEX CLX A & C')">Request TDS →</a></div>
+    <div class="product-card"><div class="p-cat">For Cotton &amp; Rayon</div><div class="p-name">HANATEX CLXi</div><p class="p-desc">Enhanced CLX for improved paste stability and printability on cellulosic fibers.</p><a href="#contact" class="p-link" onclick="prefillProduct('HANATEX CLXi')">Request TDS →</a></div>
+    <div class="product-card"><div class="p-cat">Denim Discharge</div><div class="p-name">HANATEX DDA</div><p class="p-desc">Color discharge agent for denim. Sharp, consistent bleach effects with predictable tone. (Export: HANATEX 750)</p><div style="display:flex;gap:1rem;flex-wrap:wrap;"><a href="dda.html" class="p-link" style="color:#c8962e;">View DDA Site →</a><a href="#contact" class="p-link" onclick="prefillProduct('HANATEX DDA')">Request TDS →</a></div></div>
+    <div class="product-card"><div class="p-cat">Denim Discharge</div><div class="p-name">HANATEX CS-400</div><p class="p-desc">White discharge agent for denim finishing. Clean, bright white effects in garment processing.</p><a href="#contact" class="p-link" onclick="prefillProduct('HANATEX CS-400')">Request TDS →</a></div>
+    <div class="product-card"><div class="p-cat">Forming Binder</div><div class="p-name">HANATEX HFB</div><p class="p-desc">High-performance forming binder for pigment printing. Excellent washfastness and fabric hand.</p><a href="#contact" class="p-link" onclick="prefillProduct('HANATEX HFB')">Request TDS →</a></div>
   </div>
 </section>
 
@@ -998,21 +1030,23 @@
           Sales Office: 71, Jeokgeum-ro, Danwon-gu, Ansan
         </a>
       </div></div></div>
-      <div class="contact-block"><div class="c-icon">✉️</div><div><div class="c-lbl">Overseas Inquiries</div><div class="c-val"><a href="/cdn-cgi/l/email-protection#224d5447505147435162464d4a4d494d5047430c414d4f"><span class="__cf_email__" data-cfemail="3a554c5f48495f5b497a5e5552555155485f5b14595557">[email&#160;protected]</span></a></div></div></div>
+      <div class="contact-block"><div class="c-icon">✉️</div><div><div class="c-lbl">Overseas Inquiries</div><div class="c-val"><a href="mailto:overseas@dohokorea.com">overseas@dohokorea.com</a></div></div></div>
       <div class="contact-block"><div class="c-icon">🌐</div><div><div class="c-lbl">Website</div><div class="c-val">www.dohokorea.com</div></div></div>
     </div>
     <div>
-      <div class="form">
+      <form class="form" id="inquiryForm" onsubmit="event.preventDefault(); dohoSendInquiry(this, 'dohokorea.com #contact');" novalidate>
+        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
         <div class="form-row">
-          <div class="fg"><label class="flbl">Full Name</label><input type="text" class="finput" placeholder="John Smith"></div>
-          <div class="fg"><label class="flbl">Company</label><input type="text" class="finput" placeholder="Your Company"></div>
+          <div class="fg"><label class="flbl">Full Name *</label><input type="text" name="name" class="finput" placeholder="John Smith" required></div>
+          <div class="fg"><label class="flbl">Company</label><input type="text" name="company" class="finput" placeholder="Your Company"></div>
         </div>
-        <div class="fg"><label class="flbl">Email Address</label><input type="email" class="finput" placeholder="john@company.com"></div>
-        <div class="fg"><label class="flbl">Country / Market</label><input type="text" class="finput" placeholder="e.g. Vietnam, Indonesia, Korea"></div>
-        <div class="fg"><label class="flbl">Product of Interest</label><input type="text" class="finput" placeholder="e.g. HANATEX DDA, SW-8, CLX"></div>
-        <div class="fg"><label class="flbl">Message</label><textarea class="ftarea" placeholder="Please describe your requirements, technical parameters, or quantities..."></textarea></div>
-        <button class="fsub">Send Inquiry</button>
-      </div>
+        <div class="fg"><label class="flbl">Email Address *</label><input type="email" name="email" class="finput" placeholder="john@company.com" required></div>
+        <div class="fg"><label class="flbl">Country / Market</label><input type="text" name="country" class="finput" placeholder="e.g. Vietnam, Indonesia, Korea"></div>
+        <div class="fg"><label class="flbl">Product of Interest</label><input type="text" name="product" id="f-product" class="finput" placeholder="e.g. HANATEX DDA, SW-8, CLX"></div>
+        <div class="fg"><label class="flbl">Message *</label><textarea name="message" class="ftarea" placeholder="Please describe your requirements, technical parameters, or quantities..." required></textarea></div>
+        <button type="submit" class="fsub">Send Inquiry</button>
+        <div class="inq-status" style="display:none"></div>
+      </form>
     </div>
   </div>
 </section>
@@ -1063,7 +1097,7 @@
     <a href="#products">Products</a>
     <a href="#ventures">New Business</a>
     <a href="#contact">Contact</a>
-    <a href="/cdn-cgi/l/email-protection#117e6774636274706251757e797e7a7e6374703f727e7c"><span class="__cf_email__" data-cfemail="cfa0b9aabdbcaaaebc8faba0a7a0a4a0bdaaaee1aca0a2">[email&#160;protected]</span></a>
+    <a href="mailto:overseas@dohokorea.com">overseas@dohokorea.com</a>
   </div>
 </footer>
 <div class="lightbox-overlay" id="lightbox" onclick="closeLightbox()">
@@ -1071,7 +1105,7 @@
   <img id="lightboxImg" src="" alt="Certificate">
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
   function openLightbox(src) {
     document.getElementById('lightboxImg').src = src;
     document.getElementById('lightbox').classList.add('open');
@@ -1099,5 +1133,38 @@
   });
 </script>
 
+
+<!-- HANATEX DDA promo popup -->
+<div class="dda-pop" id="ddaPop" role="dialog" aria-modal="true" aria-labelledby="ddaPopTitle" onclick="if(event.target===this)closeDdaPop()">
+  <div class="dda-card">
+    <button class="dda-x" onclick="closeDdaPop()" aria-label="Close">✕</button>
+    <div class="dda-card-top">
+      <div class="dda-kicker">New · Featured Product</div>
+      <div class="dda-title" id="ddaPopTitle">HANATEX <em>DDA</em></div>
+      <div class="dda-sub">Indigo Denim Color Discharge Agent — sharp, consistent discharge effects with predictable tone. Export name: HANATEX 750.</div>
+      <div class="dda-tags"><span>Indigo Denim</span><span>Color Discharge</span><span>Made in Korea</span></div>
+    </div>
+    <div class="dda-actions">
+      <a class="dda-btn primary" href="dda.html">Explore HANATEX DDA →</a>
+      <button class="dda-btn ghost" onclick="closeDdaPop(); prefillProduct('HANATEX DDA'); location.hash='contact';">Email Inquiry</button>
+    </div>
+    <div class="dda-foot"><button onclick="hideDdaToday()">Don't show again today</button><button onclick="closeDdaPop()">Close</button></div>
+  </div>
+</div>
+<button class="dda-fab" onclick="openDdaPop()" aria-label="HANATEX DDA promotion"><i></i>HANATEX DDA</button>
+<script src="inquiry.js"></script>
+<script>
+  function prefillProduct(name){ var f=document.getElementById('f-product'); if(f) f.value=name; }
+  function openDdaPop(){ document.getElementById('ddaPop').classList.add('open'); }
+  function closeDdaPop(){ document.getElementById('ddaPop').classList.remove('open'); try{ sessionStorage.setItem('ddaPopSeen','1'); }catch(e){} }
+  function hideDdaToday(){ try{ localStorage.setItem('ddaPopHideUntil', new Date().toDateString()); }catch(e){} closeDdaPop(); }
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeDdaPop(); });
+  (function(){
+    var q=new URLSearchParams(location.search).get('product'); if(q) prefillProduct(q);
+    var seen=false, hidden=false;
+    try{ seen=sessionStorage.getItem('ddaPopSeen')==='1'; hidden=localStorage.getItem('ddaPopHideUntil')===new Date().toDateString(); }catch(e){}
+    if(!seen && !hidden && !q) setTimeout(openDdaPop, 1500);
+  })();
+</script>
 </body>
 </html>
