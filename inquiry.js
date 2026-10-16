@@ -56,11 +56,15 @@
         form.querySelectorAll('input:not([type=hidden]):not([name=_honey]), textarea').forEach(function (el) {
           if (el.name !== 'product' || !el.dataset.fixed) el.value = '';
         });
+      } else if (/activat/i.test(json.message || '')) {
+        show(status, true, '✅ Received. (Admin: please check overseas@dohokorea.com for the FormSubmit activation email — one-time setup.)');
+        return;
       } else {
-        throw new Error(json.message || 'Server error');
+        throw new Error((json.message || ('HTTP ' + res.status)));
       }
     } catch (err) {
-      show(status, false, '❌ Sending failed. Please email us directly at overseas@dohokorea.com');
+      console.error('[DOHO inquiry]', err);
+      show(status, false, '❌ Sending failed (' + (err && err.message ? err.message : 'network') + '). Please email us directly at overseas@dohokorea.com');
     } finally {
       btn.disabled = false;
       btn.textContent = label;
